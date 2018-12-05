@@ -1,13 +1,12 @@
-import axios from 'axios';
 import get from 'lodash/get';
 import React, { PureComponent } from 'react';
 
+import ApiClient from '../api/ApiClient';
 import Filters from './Filters';
 import Gallery from './Gallery';
+import { getObjectKeys } from './helpers';
 
 class Endpoint extends PureComponent {
-  static API_URL = 'https://jsonplaceholder.typicode.com/';
-
   state = {
     data: null,
     error: null,
@@ -25,7 +24,7 @@ class Endpoint extends PureComponent {
 
     this.setState({ data: null, error: null, isFetching: true });
     try {
-      const { data } = await axios.get(`${Endpoint.API_URL}${selectedEndpoint}`);
+      const { data } = await ApiClient.get(selectedEndpoint);
       this.setState({ data });
     } catch (error) {
       this.setState({ error });
@@ -47,20 +46,6 @@ class Endpoint extends PureComponent {
     return typeof itemValue !== 'undefined' && itemValue.toString().match(filterRegex);
   };
 
-  getFilterKeys(item) {
-    let keys = [];
-
-    for (let key in item) {
-      if (typeof item[key] === 'object') {
-        const subkeys = this.getFilterKeys(item[key]);
-        keys = [...keys, ...subkeys.map(subkey => `${key}.${subkey}`)];
-      } else {
-        keys.push(key);
-      }
-    }
-    return keys;
-  }
-
   onFilterChange = (filterField, filterValue) => {
     this.setState({ filterField, filterValue });
   };
@@ -81,7 +66,7 @@ class Endpoint extends PureComponent {
         )}
         {data && (
           <>
-            <Filters filters={this.getFilterKeys(data[0])} onFilterChange={this.onFilterChange} />
+            <Filters filters={getObjectKeys(data[0])} onFilterChange={this.onFilterChange} />
             {filteredData.length ? (
               <Gallery data={filteredData} endpoint={selectedEndpoint} />
             ) : (
