@@ -8,3 +8,14 @@ h1,
 h2 {
   margin-top: 0;
 }
+
+.error-message {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.error-message:hover {
+  text-decoration: underline;
+}

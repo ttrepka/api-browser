@@ -1,13 +1,10 @@
 import axios from 'axios';
 import React, { PureComponent } from 'react';
 
-import './Content.css';
+import Gallery from './Gallery';
 
-class Content extends PureComponent {
+class Endpoint extends PureComponent {
   static API_URL = 'https://jsonplaceholder.typicode.com/';
-
-  // mappings to know which value from data to display in the gallery view
-  static ENDPOINT_MAPPINGS = { users: 'username', posts: 'title' };
 
   state = {
     data: null,
@@ -26,7 +23,7 @@ class Content extends PureComponent {
 
     this.setState({ data: null, error: null, isFetching: true });
     try {
-      const { data } = await axios.get(`${Content.API_URL}${selectedEndpoint}`);
+      const { data } = await axios.get(`${Endpoint.API_URL}${selectedEndpoint}`);
       this.setState({ data });
     } catch (error) {
       this.setState({ error });
@@ -43,30 +40,20 @@ class Content extends PureComponent {
       return <h2>No endpoint selected</h2>;
     }
 
-    const itemKey = Content.ENDPOINT_MAPPINGS[selectedEndpoint];
-
     return (
       <>
         <h2>{selectedEndpoint}</h2>
 
         {isFetching && <p>Fetching data...</p>}
         {error && (
-          <a className="content-error" onClick={this.fetchData}>
+          <span className="error-message" onClick={this.fetchData}>
             Failed to fetch data. Click to try again.
-          </a>
+          </span>
         )}
-        {data && (
-          <ul>
-            {data.map((item, index) => {
-              const value = item[itemKey];
-
-              return <li key={`${value}-${index}`}>{value}</li>;
-            })}
-          </ul>
-        )}
+        {data && <Gallery data={data} endpoint={selectedEndpoint} />}
       </>
     );
   }
 }
 
-export default Content;
+export default Endpoint;

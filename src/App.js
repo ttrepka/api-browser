@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import './App.css';
-import Content from './Content';
-import Navigation from './Navigation';
+import Endpoint from './endpoint/Endpoint';
+import Navigation from './navigation/Navigation';
 
 const App = () => {
   const [endpoint, selectEndpoint] = useState();
@@ -17,7 +17,7 @@ const App = () => {
         </div>
 
         <div className="app-column app-content">
-          <Content selectedEndpoint={endpoint} />
+          <Endpoint selectedEndpoint={endpoint} />
         </div>
       </div>
     </div>

@@ -1,0 +1,28 @@
+.gallery {
+  position: relative;
+}
+
+.gallery-item {
+  list-style-type: none;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.gallery-item:before {
+  content: '>';
+  position: absolute;
+  left: 1em;
+  transition: transform 0.5s;
+}
+
+.gallery-item.is-open .gallery-item-heading,
+.gallery-item:hover .gallery-item-heading {
+  color: rgb(95, 178, 250);
+  text-decoration: underline;
+}
+
+.gallery-item.is-open:before,
+.gallery-item:hover:before {
+  color: rgb(95, 178, 250);
+  transform: rotate(90deg);
+}
