@@ -16,10 +16,8 @@ class Endpoint extends PureComponent {
     isFetching: false
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedEndpoint !== this.props.selectedEndpoint) {
-      this.fetchData();
-    }
+  componentDidMount() {
+    this.fetchData();
   }
 
   fetchData = async () => {
@@ -71,16 +69,10 @@ class Endpoint extends PureComponent {
     const { selectedEndpoint } = this.props;
     const { data, error, isFetching } = this.state;
 
-    if (!selectedEndpoint) {
-      return <h2>No endpoint selected</h2>;
-    }
-
     const filteredData = data && data.filter(this.filterData);
 
     return (
       <>
-        <h2>{selectedEndpoint}</h2>
-
         {isFetching && <p>Fetching data...</p>}
         {error && (
           <span className="error-message" onClick={this.fetchData}>
