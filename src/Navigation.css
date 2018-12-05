@@ -1,0 +1,9 @@
+.navigation-item {
+  cursor: pointer;
+}
+
+.navigation-item:hover,
+.navigation-item.active {
+  color: rgb(95, 178, 250);
+  text-decoration: underline;
+}

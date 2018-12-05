@@ -1,0 +1,10 @@
+.content-error {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.content-error:hover {
+  text-decoration: underline;
+}

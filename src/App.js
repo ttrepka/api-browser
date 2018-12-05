@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import Content from './Content';
 import Navigation from './Navigation';
 
-const App = () => (
-  <div className="app">
-    <h1>API Browser</h1>
+const App = () => {
+  const [endpoint, selectEndpoint] = useState();
 
-    <div className="app-row">
-      <div className="app-column app-navigation">
-        <Navigation />
-      </div>
+  return (
+    <div className="app">
+      <h1>API Browser</h1>
 
-      <div className="app-column app-content">
-        <Content />
+      <div className="app-row">
+        <div className="app-column app-navigation">
+          <Navigation onEndpointSelect={selectEndpoint} selectedEndpoint={endpoint} />
+        </div>
+
+        <div className="app-column app-content">
+          <Content selectedEndpoint={endpoint} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;

@@ -1,10 +1,22 @@
 import React from 'react';
 
-const Navigation = () => (
+import './Navigation.css';
+
+const SUPPORTED_ENDPOINTS = ['users', 'posts'];
+
+const Navigation = ({ onEndpointSelect, selectedEndpoint }) => (
   <>
-    <h2>Select endpoint</h2>
+    <h2>Endpoints</h2>
     <ul>
-      <li>users</li>
+      {SUPPORTED_ENDPOINTS.map(endpoint => (
+        <li
+          key={endpoint}
+          className={`navigation-item ${endpoint === selectedEndpoint ? 'active' : ''}`}
+          onClick={() => onEndpointSelect(endpoint)}
+        >
+          {endpoint}
+        </li>
+      ))}
     </ul>
   </>
 );
