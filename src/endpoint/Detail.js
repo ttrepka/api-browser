@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Detail = ({ data }) => {
-  return <h3>Detail</h3>;
-};
+const Detail = ({ data }) => (
+  <div className="gallery-detail">
+    <pre>{JSON.stringify(data, null, 4)}</pre>
+  </div>
+);
 
 export default Detail;

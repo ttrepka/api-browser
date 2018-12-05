@@ -4,7 +4,6 @@
 
 .gallery-item {
   list-style-type: none;
-  cursor: pointer;
   margin: 5px 0;
 }
 
@@ -19,10 +18,15 @@
 .gallery-item:hover .gallery-item-heading {
   color: rgb(95, 178, 250);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .gallery-item.is-open:before,
 .gallery-item:hover:before {
   color: rgb(95, 178, 250);
   transform: rotate(90deg);
+}
+
+.gallery-detail {
+  overflow-y: auto;
 }

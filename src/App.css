@@ -20,4 +20,5 @@
 .app-content {
   flex: 3;
   background-color: aliceblue;
+  overflow-y: hidden;
 }

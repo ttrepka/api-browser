@@ -17,13 +17,11 @@ const Gallery = ({ data, endpoint }) => {
         const isOpen = selectedItem === index;
 
         return (
-          <li
-            key={`${value}-${index}`}
-            className={`gallery-item ${isOpen ? 'is-open' : ''}`}
-            onClick={() => selectItem(isOpen ? null : index)}
-          >
-            <span className="gallery-item-heading">{value}</span>
-            {isOpen && <Detail />}
+          <li key={`${value}-${index}`} className={`gallery-item ${isOpen ? 'is-open' : ''}`}>
+            <div className="gallery-item-heading" onClick={() => selectItem(isOpen ? null : index)}>
+              {value}
+            </div>
+            {isOpen && <Detail data={item} />}
           </li>
         );
       })}
