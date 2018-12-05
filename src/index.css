@@ -17,6 +17,29 @@ pre {
   display: inline-block;
 }
 
+button,
+input,
+select {
+  border: 1px dashed rgb(95, 178, 250);
+  outline: none;
+  padding: 5px;
+  margin: 5px;
+}
+
+button {
+  background-color: rgb(95, 178, 250);
+  color: white;
+  padding: 5px 15px;
+}
+
+button:not(:disabled):hover {
+  text-decoration: underline;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 .error-message {
   background-color: red;
   color: white;

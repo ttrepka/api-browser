@@ -1,6 +1,6 @@
 # API Browser
 
-A simple API browser of [JSONPlaceholder API](https://jsonplaceholder.typicode.com/). It only uses [users enpoint](https://jsonplaceholder.typicode.com/users) for simplicity.
+A simple API browser of [JSONPlaceholder API](https://jsonplaceholder.typicode.com/). It only uses [users enpoint](https://jsonplaceholder.typicode.com/users) and [posts enpoint](https://jsonplaceholder.typicode.com/posts) for simplicity.
 
 The project is written in React, it was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

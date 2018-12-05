@@ -1,6 +1,8 @@
 import axios from 'axios';
+import get from 'lodash/get';
 import React, { PureComponent } from 'react';
 
+import Filters from './Filters';
 import Gallery from './Gallery';
 
 class Endpoint extends PureComponent {
@@ -9,6 +11,8 @@ class Endpoint extends PureComponent {
   state = {
     data: null,
     error: null,
+    filterField: '',
+    filterValue: '',
     isFetching: false
   };
 
@@ -32,6 +36,37 @@ class Endpoint extends PureComponent {
     }
   };
 
+  filterData = item => {
+    const { filterField, filterValue } = this.state;
+
+    if (!filterField || !filterValue) {
+      return true;
+    }
+
+    const itemValue = get(item, filterField);
+    const filterRegex = new RegExp(filterValue, 'i');
+
+    return typeof itemValue !== 'undefined' && itemValue.toString().match(filterRegex);
+  };
+
+  getFilterKeys(item) {
+    let keys = [];
+
+    for (let key in item) {
+      if (typeof item[key] === 'object') {
+        const subkeys = this.getFilterKeys(item[key]);
+        keys = [...keys, ...subkeys.map(subkey => `${key}.${subkey}`)];
+      } else {
+        keys.push(key);
+      }
+    }
+    return keys;
+  }
+
+  onFilterChange = (filterField, filterValue) => {
+    this.setState({ filterField, filterValue });
+  };
+
   render() {
     const { selectedEndpoint } = this.props;
     const { data, error, isFetching } = this.state;
@@ -39,6 +74,8 @@ class Endpoint extends PureComponent {
     if (!selectedEndpoint) {
       return <h2>No endpoint selected</h2>;
     }
+
+    const filteredData = data && data.filter(this.filterData);
 
     return (
       <>
@@ -50,7 +87,16 @@ class Endpoint extends PureComponent {
             Failed to fetch data. Click to try again.
           </span>
         )}
-        {data && <Gallery data={data} endpoint={selectedEndpoint} />}
+        {data && (
+          <>
+            <Filters filters={this.getFilterKeys(data[0])} onFilterChange={this.onFilterChange} />
+            {filteredData.length ? (
+              <Gallery data={filteredData} endpoint={selectedEndpoint} />
+            ) : (
+              <p>No data matching your filter</p>
+            )}
+          </>
+        )}
       </>
     );
   }

@@ -14,11 +14,14 @@ const Gallery = ({ data, endpoint }) => {
     <ul className="gallery">
       {data.map((item, index) => {
         const value = item[itemKey];
-        const isOpen = selectedItem === index;
+        const isOpen = selectedItem === item.id;
 
         return (
           <li key={`${value}-${index}`} className={`gallery-item ${isOpen ? 'is-open' : ''}`}>
-            <div className="gallery-item-heading" onClick={() => selectItem(isOpen ? null : index)}>
+            <div
+              className="gallery-item-heading"
+              onClick={() => selectItem(isOpen ? null : item.id)}
+            >
               {value}
             </div>
             {isOpen && <Detail data={item} />}
