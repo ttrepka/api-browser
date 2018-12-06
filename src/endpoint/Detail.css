@@ -1,0 +1,11 @@
+.detail {
+  overflow-y: auto;
+}
+
+.detail-json {
+  font-size: 1.2em;
+  background-color: white;
+  border: 1px dashed rgb(95, 178, 250);
+  padding: 10px;
+  display: inline-block;
+}

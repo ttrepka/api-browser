@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './Detail.css';
+
 const Detail = ({ data }) => (
-  <div className="gallery-detail">
-    <pre>{JSON.stringify(data, null, 4)}</pre>
+  <div className="detail">
+    <pre className="detail-json">{JSON.stringify(data, null, 4)}</pre>
   </div>
 );
 

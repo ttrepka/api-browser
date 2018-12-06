@@ -26,7 +26,3 @@
   color: rgb(95, 178, 250);
   transform: rotate(90deg);
 }
-
-.gallery-detail {
-  overflow-y: auto;
-}

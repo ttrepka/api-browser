@@ -1,3 +1,7 @@
+/**
+ * Get all keys in an object, sorted alphabetically
+ * Nested keys are returned in dotted notation (eg. 'address.street')
+ */
 export const getObjectKeys = obj => {
   let keys = [];
 

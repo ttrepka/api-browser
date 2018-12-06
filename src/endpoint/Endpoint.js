@@ -59,11 +59,13 @@ class Endpoint extends PureComponent {
     return (
       <>
         {isFetching && <p>Fetching data...</p>}
+
         {error && (
           <span className="error-message" onClick={this.fetchData}>
             Failed to fetch data. Click to try again.
           </span>
         )}
+
         {data && (
           <>
             <Filters filters={getObjectKeys(data[0])} onFilterChange={this.onFilterChange} />

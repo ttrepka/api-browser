@@ -8,7 +8,7 @@ const Filters = ({ filters, onFilterChange }) => {
   const canReset = field || value;
 
   return (
-    <div className="filters">
+    <>
       <div>
         <select onChange={e => updateField(e.target.value)} value={field}>
           <option value="">-- Select field --</option>
@@ -41,7 +41,7 @@ const Filters = ({ filters, onFilterChange }) => {
           Reset
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
